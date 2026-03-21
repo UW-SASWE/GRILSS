@@ -1,1 +1,1 @@
-{"type": "Feature", "properties": {"GRILSS RID": 889, "Reservoir": "COYOTE CREEK NO. 4", "Country": "USA", "Latitude": 43.013407, "Longitude": -122.711272, "Cap (MCM)": 2.960352e-05, "Height (m)": null}, "geometry": {"type": "Polygon", "coordinates": []}}
+{"id": "888", "type": "Feature", "properties": {"GRILSS RID": 889, "Reservoir": "COYOTE CREEK NO. 4", "Country": "USA", "Latitude": 43.013407, "Longitude": -122.711272, "Cap (MCM)": 2.960352e-05, "Height (m)": null}, "geometry": null}

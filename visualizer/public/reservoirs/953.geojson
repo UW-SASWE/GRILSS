@@ -1,1 +1,1 @@
-{"type": "Feature", "properties": {"GRILSS RID": 953, "Reservoir": "Sunnycove F.R.S.", "Country": "USA", "Latitude": 33.95722, "Longitude": -112.73972, "Cap (MCM)": 0.23929512, "Height (m)": null}, "geometry": {"type": "Polygon", "coordinates": []}}
+{"id": "952", "type": "Feature", "properties": {"GRILSS RID": 953, "Reservoir": "Sunnycove F.R.S.", "Country": "USA", "Latitude": 33.95722, "Longitude": -112.73972, "Cap (MCM)": 0.23929512, "Height (m)": null}, "geometry": null}

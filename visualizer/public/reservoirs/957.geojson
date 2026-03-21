@@ -1,1 +1,1 @@
-{"type": "Feature", "properties": {"GRILSS RID": 957, "Reservoir": "TAILHOLT MAIN SEDIMENT DAM", "Country": "USA", "Latitude": 45.044033, "Longitude": -115.678881, "Cap (MCM)": 6.8088096e-05, "Height (m)": null}, "geometry": {"type": "Polygon", "coordinates": []}}
+{"id": "956", "type": "Feature", "properties": {"GRILSS RID": 957, "Reservoir": "TAILHOLT MAIN SEDIMENT DAM", "Country": "USA", "Latitude": 45.044033, "Longitude": -115.678881, "Cap (MCM)": 6.8088096e-05, "Height (m)": null}, "geometry": null}
