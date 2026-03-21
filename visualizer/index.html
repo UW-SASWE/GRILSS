@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GRILSS Visualizer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="node_modules/leaflet/dist/leaflet.css" />
+  </head>
+  <body class="light-theme">
+    <div id="app">
+      <!-- Permanent Toggles -->
+      <button id="toggle-left-sidebar" class="floating-btn left" title="Toggle Filters">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+      </button>
+      <button id="toggle-right-sidebar" class="floating-btn right" title="Toggle Details">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+      </button>
+
+      <!-- Left Sidebar (Filters & Overall Stats) -->
+      <aside id="left-sidebar" class="glass-panel">
+        <button id="close-left-panel" class="close-btn" title="Close Filters">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+        </button>
+        
+        <div class="sidebar-content">
+            <header>
+              <h1><a href="https://osf.io/w4ug8/overview" target="_blank" title="View GRILSS OSF Project">GRILSS</a></h1>
+              <p class="subtitle">Global Reservoir Inventory of Lost Storage by Sedimentation</p>
+            </header>
+
+            <section class="filters-section">
+              <h3>Filters</h3>
+              <div class="filter-group">
+                <label>Continent</label>
+                <input list="continent-list" id="continent-filter" placeholder="Type to search Continent...">
+                <datalist id="continent-list"></datalist>
+              </div>
+              
+              <div class="filter-group">
+                <label>Country</label>
+                <input list="country-list" id="country-filter" placeholder="Type to search Country...">
+                <datalist id="country-list"></datalist>
+              </div>
+
+              <div class="filter-group">
+                <label>Major River Basin</label>
+                <input list="basin-list" id="basin-filter" placeholder="Type to search Basin...">
+                <datalist id="basin-list"></datalist>
+              </div>
+              <button id="reset-filters" class="secondary-btn">Reset Filters</button>
+            </section>
+
+            <section class="filters-section mt-2">
+              <div class="checkbox-group">
+                <input type="checkbox" id="toggle-clusters" checked>
+                <label for="toggle-clusters">Cluster overlapping markers</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="toggle-scale" checked>
+                <label for="toggle-scale">Scale sizes by original capacity</label>
+              </div>
+            </section>
+
+            <section id="global-stats" class="stats-grid mt-2">
+              <div class="stat-card" style="grid-column: span 2;">
+                <span class="stat-label">Total Reservoirs</span>
+                <span class="stat-value" id="stat-total">0</span>
+              </div>
+            </section>
+
+            <section class="speedometer-section">
+              <h3>Avg Annual Capacity Loss Rate</h3>
+              <div id="cap-loss-gauge" class="gauge-container"></div>
+            </section>
+
+            <section class="speedometer-section">
+              <h3>Avg Annual Sedimentation Rate</h3>
+              <div id="sed-rate-gauge" class="gauge-container"></div>
+            </section>
+        </div>
+      </aside>
+
+      <!-- Right Sidebar (Dam Details & Geometries) -->
+      <aside id="right-sidebar" class="glass-panel hidden">
+        <button id="close-right-panel" class="close-btn" title="Close Details">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+        </button>
+        
+        <div class="sidebar-content" id="right-dynamic-content">
+            <div id="empty-selection" class="empty-state">
+              <svg width="48" height="48" fill="none" stroke="var(--text-secondary)" stroke-width="1.5">
+                  <path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z"/>
+                  <circle cx="12" cy="10" r="3"/>
+              </svg>
+              <p>Select a dam on the map to view its details.</p>
+            </div>
+
+            <div id="dam-details" class="hidden">
+              <h2 id="detail-name">Reservoir Name</h2>
+              <p id="detail-country" class="accent-text">Country</p>
+              <p id="detail-basin" class="meta-text">Basin</p>
+              
+              <div class="info-grid mt-4">
+                <div class="info-item">
+                  <span class="info-label">GRILSS RID</span>
+                  <span class="info-value" id="detail-rid"></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Built Year</span>
+                  <span class="info-value" id="detail-built"></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Original Capacity</span>
+                  <span class="info-value" id="detail-original-cap"></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Avg Sed. Rate</span>
+                  <span class="info-value" id="detail-sed-rate-detail"></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Avg Loss Rate</span>
+                  <span class="info-value" id="detail-loss-rate-detail"></span>
+                </div>
+              </div>
+
+              <!-- Multiple Observation Periods -->
+              <h3 class="mt-4">Observation Periods</h3>
+              <div id="observation-list" class="obs-list">
+                <!-- Dynamically populated -->
+              </div>
+
+              <div class="geometry-actions mt-4">
+                <button id="btn-show-catchment" class="action-btn">Show Catchment</button>
+                <button id="btn-show-reservoir" class="action-btn">Show Reservoir</button>
+                <button id="btn-clear-geom" class="secondary-btn hidden">Clear Highlight</button>
+              </div>
+            </div>
+        </div>
+      </aside>
+
+      <!-- Map Legend -->
+      <div id="map-legend" class="map-legend">
+        <h4>Capacity Loss Rate (%/yr)</h4>
+        <div class="legend-row"><span class="color-box" style="background:#ef4444;"></span> &gt; 2.25 % (Severe)</div>
+        <div class="legend-row"><span class="color-box" style="background:#f59e0b;"></span> 1.0 - 2.25 % (High)</div>
+        <div class="legend-row"><span class="color-box" style="background:#4ade80;"></span> 0.5 - 1.0 % (Medium)</div>
+        <div class="legend-row"><span class="color-box" style="background:#15803d;"></span> &lt; 0.5 % (Low)</div>
+        <div class="legend-separator"></div>
+        <div class="legend-row"><span class="color-box" style="background:#94a3b8; border-radius:50%;"></span> Marker Clusters</div>
+      </div>
+
+      <!-- Map Container -->
+      <main id="map"></main>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
