@@ -10,7 +10,7 @@
 ![Open Source](https://img.shields.io/badge/Open%20Source-Available-brightgreen)
 
 
-**Award**: Impactful Earth Science Dataset — American Geophysical Union (AGU)  
+**Award**: Impactful Earth Science Dataset — [American Geophysical Union (AGU)](https://www.agu.org)  
 **Version**: 1.2  
 **Release Date**: 10 February, 2025  
 **Authors**: Sanchit Minocha and Faisal Hossain  
