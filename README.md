@@ -29,7 +29,7 @@ The dataset consists of two main components: sedimentation data and spatial vect
 
 The GRILSS visualizer is a web-based interactive frontend for exploring the GRILSS dataset created using AntiGravity Agentic AI Tool. It allows users to explore the dataset and visualize the capacity loss and sedimentation information of over thousand reservoirs worldwide on an interactive map. The visualizer is built using [Vite](https://vitejs.dev/), [Vanilla JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript), and [Leaflet](https://leafletjs.com/). It is deployed on GitHub Pages. 
 
-Access it here: https://uw-saswe.github.io/GRILSS/
+🔗 **GRILSS Visualizer:** [https://uw-saswe.github.io/GRILSS/](https://uw-saswe.github.io/GRILSS/)
 
 ---
 
