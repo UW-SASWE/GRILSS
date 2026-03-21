@@ -2,6 +2,7 @@
 
 # GRILSS: Global Reservoir Inventory of Lost Storage by Sedimentation
 
+![AGU Award](https://img.shields.io/badge/🏆_Awarded-Impactful_Earth_Science_Dataset_(AGU)-gold)
 ![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-coral.svg)
 ![Version](https://img.shields.io/badge/Version-1.2-turquoise)
 ![Open Access](https://img.shields.io/badge/Open%20Access-Available-blue)
@@ -9,6 +10,7 @@
 ![Open Source](https://img.shields.io/badge/Open%20Source-Available-brightgreen)
 
 
+**Award**: Impactful Earth Science Dataset — American Geophysical Union (AGU)  
 **Version**: 1.2  
 **Release Date**: 10 February, 2025  
 **Authors**: Sanchit Minocha and Faisal Hossain  
@@ -166,7 +168,7 @@ The dataset is distributed under the **Creative Commons Attribution 4.0 Internat
 If you use this dataset in your work, please cite it as follows:
 
 - Minocha, S., & Hossain, F. (2025, February 10). GRILSS [Dataset]. Retrieved from [osf.io/w4ug8](https://osf.io/w4ug8/).
-- Minocha, S., & Hossain, F., 2025a. GRILSS: opening the gateway to global reservoir sedimentation data curation. Earth Syst. Sci. Data 17(4), 1743–1759. [https://doi.org/10.5194/essd-17-1743-2025](https://doi.org/10.5194/essd-17-1743-2025).
+- Minocha, S., & Hossain, F., 2025. GRILSS: opening the gateway to global reservoir sedimentation data curation. Earth Syst. Sci. Data 17(4), 1743–1759. [https://doi.org/10.5194/essd-17-1743-2025](https://doi.org/10.5194/essd-17-1743-2025).
 
 ---
 
