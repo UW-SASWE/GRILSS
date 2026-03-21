@@ -1,3 +1,5 @@
+![GRILSS Logo](https://github.com/UW-SASWE/GRILSS/blob/main/visualizer/public/GRILSS_logo.png)
+
 # GRILSS: Global Reservoir Inventory of Lost Storage by Sedimentation
 
 ![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-coral.svg)
