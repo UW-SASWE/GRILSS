@@ -87,7 +87,7 @@ function setupUI() {
 
 async function loadData() {
   try {
-    const res = await fetch('/data.geojson');
+    const res = await fetch(import.meta.env.BASE_URL + 'data.geojson');
     if (!res.ok) throw new Error();
     geojsonData = await res.json();
     populateDatalists();
@@ -343,7 +343,7 @@ async function fetchGeometry(type) {
     if (!rid) return alert("No reservoir ID found.");
 
     try {
-        const res = await fetch(`/${type}/${rid}.geojson`);
+        const res = await fetch(`${import.meta.env.BASE_URL}${type}/${rid}.geojson`);
         if (!res.ok) return alert(`No ${type} geometry available.`);
         const geom = await res.json();
         
