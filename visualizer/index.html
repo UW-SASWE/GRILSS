@@ -31,8 +31,10 @@
         </button>
         
         <div class="sidebar-content">
-            <header>
-              <h1><a href="https://osf.io/w4ug8/overview" target="_blank" title="View GRILSS OSF Project">GRILSS</a></h1>
+            <header style="text-align: center; margin-bottom: 8px;">
+              <a href="https://osf.io/w4ug8/overview" target="_blank" title="View GRILSS OSF Project" style="cursor: pointer; display: block; transition: opacity 0.2s;" onmouseover="this.style.opacity=0.8" onmouseout="this.style.opacity=1">
+                <img src="./GRILSS_logo.png" alt="GRILSS Logo" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 12px; display: block; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); cursor: pointer;">
+              </a>
               <p class="subtitle">Global Reservoir Inventory of Lost Storage by Sedimentation</p>
             </header>
 
@@ -61,11 +63,11 @@
             <section class="filters-section mt-2">
               <div class="checkbox-group">
                 <input type="checkbox" id="toggle-clusters" checked>
-                <label for="toggle-clusters">Cluster overlapping markers</label>
+                <label for="toggle-clusters">Cluster nearby/overlapping markers</label>
               </div>
               <div class="checkbox-group">
                 <input type="checkbox" id="toggle-scale" checked>
-                <label for="toggle-scale">Scale sizes by original capacity</label>
+                <label for="toggle-scale">Scale marker sizes by original capacity</label>
               </div>
             </section>
 

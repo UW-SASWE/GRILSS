@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GRILSS Visualizer</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/assets/index-3Iqs4f5B.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CoiZICrG.css">
+    <script type="module" crossorigin src="/GRILSS/assets/index-ZRFUPoUz.js"></script>
+    <link rel="stylesheet" crossorigin href="/GRILSS/assets/index-CoiZICrG.css">
   </head>
   <body class="light-theme">
     <div id="app">
@@ -33,7 +33,12 @@
         
         <div class="sidebar-content">
             <header>
-              <h1><a href="https://osf.io/w4ug8/overview" target="_blank" title="View GRILSS OSF Project">GRILSS</a></h1>
+              <div class="header-brand" style="display: flex; align-items: center; gap: 14px; margin-bottom: 6px;">
+                <a href="https://osf.io/w4ug8/overview" target="_blank" title="View GRILSS OSF Project">
+                  <img src="./GRILSS_logo.png" alt="GRILSS Logo" style="width: 52px; height: auto; border-radius: 6px;">
+                </a>
+                <h1 style="margin-bottom: 0;"><a href="https://osf.io/w4ug8/overview" target="_blank" title="View GRILSS OSF Project">GRILSS</a></h1>
+              </div>
               <p class="subtitle">Global Reservoir Inventory of Lost Storage by Sedimentation</p>
             </header>
 
@@ -62,11 +67,11 @@
             <section class="filters-section mt-2">
               <div class="checkbox-group">
                 <input type="checkbox" id="toggle-clusters" checked>
-                <label for="toggle-clusters">Cluster overlapping markers</label>
+                <label for="toggle-clusters">Cluster nearby/overlapping markers</label>
               </div>
               <div class="checkbox-group">
                 <input type="checkbox" id="toggle-scale" checked>
-                <label for="toggle-scale">Scale sizes by original capacity</label>
+                <label for="toggle-scale">Scale marker sizes by original capacity</label>
               </div>
             </section>
 

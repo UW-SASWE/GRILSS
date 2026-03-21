@@ -209,6 +209,24 @@ function renderMarkers() {
     drawSpeedometer(els.sedRateGauge, avgSedRate, 70, 'MCM/yr');
 }
 
+function formatVal(val, initialPlaces = 2) {
+    if (val === null || val === undefined) return 'N/A';
+    if (val === 0) return val.toFixed(initialPlaces);
+    
+    let currentPlaces = initialPlaces;
+    let s = val.toFixed(currentPlaces);
+    
+    if (parseFloat(s) !== 0) return s;
+    
+    for (const p of [4, 6, 8]) {
+        if (p <= currentPlaces) continue;
+        s = val.toFixed(p);
+        if (parseFloat(s) !== 0) return s;
+    }
+    
+    return val.toFixed(8);
+}
+
 function polarToCartesian(cx, cy, r, angleInDegrees) {
   var angleInRadians = (angleInDegrees - 180) * Math.PI / 180.0;
   return { x: cx + (r * Math.cos(angleInRadians)), y: cy + (r * Math.sin(angleInRadians)) };
@@ -268,11 +286,13 @@ function drawSpeedometer(container, val, maxVal, label) {
             ${ticksHtml}
             <!-- Needle -->
             <g class="gauge-needle" style="transform: rotate(${rot}deg);">
-                <polygon points="97,100 103,100 100,20" />
-                <circle cx="100" cy="100" r="6" />
+                <g class="needle-wobble">
+                    <polygon points="97,100 103,100 100,20" />
+                    <circle cx="100" cy="100" r="6" />
+                </g>
             </g>
             <!-- Value explicit text below needle -->
-            <text x="100" y="125" font-size="18" font-weight="700" fill="var(--text-primary)" text-anchor="middle">${rawVal.toFixed(2)} ${label}</text>
+            <text x="100" y="125" font-size="18" font-weight="700" fill="var(--text-primary)" text-anchor="middle">${formatVal(rawVal)} ${label}</text>
         </svg>
     `;
     container.innerHTML = svg;
@@ -298,13 +318,13 @@ function showDetails(feature) {
   document.getElementById('detail-built').innerText = p['Built Year'] || 'N/A';
   
   const origCap = p['Original Built Capacity (MCM)'];
-  document.getElementById('detail-original-cap').innerText = origCap ? `${origCap.toFixed(1)} MCM` : 'N/A';
+  document.getElementById('detail-original-cap').innerText = origCap !== undefined && origCap !== null ? `${formatVal(origCap)} MCM` : 'N/A';
   
   const sedRate = p['Avg Sedimentation Rate (MCM/year)'];
-  document.getElementById('detail-sed-rate-detail').innerText = sedRate ? `${sedRate.toFixed(2)} MCM/yr` : 'N/A';
+  document.getElementById('detail-sed-rate-detail').innerText = sedRate ? `${formatVal(sedRate)} MCM/yr` : 'N/A';
   
   const lossRate = p['Avg Capacity Loss Rate (%/year)'];
-  document.getElementById('detail-loss-rate-detail').innerText = lossRate !== undefined && lossRate !== null ? `${lossRate.toFixed(2)} %/yr` : 'N/A';
+  document.getElementById('detail-loss-rate-detail').innerText = lossRate !== undefined && lossRate !== null ? `${formatVal(lossRate)} %/yr` : 'N/A';
   
   const obsContainer = document.getElementById('observation-list');
   obsContainer.innerHTML = '';
@@ -325,11 +345,11 @@ function showDetails(feature) {
             <div class="obs-header">Period: ${start} - ${end}</div>
             <div class="obs-stat">
                 <span class="obs-stat-lbl">Sedimentation:</span>
-                <span class="obs-stat-val">${sed !== null ? sed.toFixed(2) + ' MCM/yr' : 'N/A'}</span>
+                <span class="obs-stat-val">${sed !== null ? formatVal(sed) + ' MCM/yr' : 'N/A'}</span>
             </div>
             <div class="obs-stat">
                 <span class="obs-stat-lbl">Loss Rate:</span>
-                <span class="obs-stat-val" style="color:${getColor(loss)};">${loss !== null ? loss.toFixed(2) + ' %/yr' : 'N/A'}</span>
+                <span class="obs-stat-val" style="color:${getColor(loss)};">${loss !== null ? formatVal(loss) + ' %/yr' : 'N/A'}</span>
             </div>
          `;
          obsContainer.appendChild(div);
