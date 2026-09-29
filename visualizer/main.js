@@ -51,8 +51,14 @@ function initMap() {
   map = L.map('map', { zoomControl: false }).setView([20, 0], 3);
   L.control.zoom({ position: 'bottomright' }).addTo(map);
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://carto.com/attributions">CARTO</a>'
+  const tileUrl = import.meta.env.VITE_BASEMAP_URL
+    || 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+  const tileAttribution = import.meta.env.VITE_BASEMAP_ATTRIBUTION
+    || '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+
+  L.tileLayer(tileUrl, {
+    attribution: tileAttribution,
+    maxZoom: 19
   }).addTo(map);
   
   clusterGroup = L.markerClusterGroup({
